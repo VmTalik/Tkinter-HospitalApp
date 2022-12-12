@@ -1,19 +1,19 @@
-from tkinter import Tk
+import tkinter as tk
 
 
-class Hospital:
-    def __init__(self, root):
-        root.title("")
-        w = root.winfo_screenwidth()
-        h = root.winfo_screenheight()
+class MainWindow(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("ИАС Диагностика")
+        w = self.winfo_screenwidth()
+        h = self.winfo_screenheight()
         w = w // 2
         h = h // 2
         w = w - 600
         h = h - 450
-        root.geometry('1200x800+{}+{}'.format(w, h))
+        self.geometry('1200x800+{}+{}'.format(w, h))
 
 
 if __name__ == "__main__":
-    root = Tk()
-    obj = Hospital(root)
-    root.mainloop()
+    app = MainWindow()
+    app.mainloop()

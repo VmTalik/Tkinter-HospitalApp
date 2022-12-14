@@ -57,7 +57,45 @@ class MainWindow(tk.Tk):
 
     @staticmethod
     def open_add_patient_window():
-        pass
+        AddPatientWindow()
+
+
+class AddPatientWindow(tk.Toplevel):
+    def __init__(self):
+        super().__init__()
+        self.title("ИАС Диагностика")
+        # w = self.winfo_screenwidth()
+        # h = self.winfo_screenheight()
+        # w = w // 2
+        # h = h // 2
+        # self.geometry('1000x700+{}+{}'.format(w, h))
+
+        self.iconbitmap('media\drug.ico')
+
+        self.fio = tk.Entry(self, width=30)
+        self.fio.grid(row=1, column=1, padx=20)
+        self.birth_date = tk.Entry(self, width=30)
+        self.birth_date.grid(row=2, column=1)
+        self.phone_number = tk.Entry(self, width=30)
+        self.phone_number.grid(row=3, column=1)
+        self.home_address = tk.Entry(self, width=30)
+        self.home_address.grid(row=4, column=1)
+        self.policy = tk.Entry(self, width=30)
+        self.policy.grid(row=5, column=1)
+        self.sector = tk.Entry(self, width=30)
+        self.sector.grid(row=6, column=1)
+        self.fio_label = tk.Label(self, text="ФИО")
+        self.fio_label.grid(row=1, column=0)
+        self.birth_date_label = tk.Label(self, text=" Дата рождения")
+        self.birth_date_label.grid(row=2, column=0)
+        self.phone_number_label = tk.Label(self, text="Телефон")
+        self.phone_number_label.grid(row=3, column=0)
+        self.home_address_label = tk.Label(self, text="Адрес")
+        self.home_address_label.grid(row=4, column=0)
+        self.policy_label = tk.Label(self, text="Полис")
+        self.policy_label.grid(row=5, column=0)
+        self.sector_label = tk.Label(self, text="Участок")
+        self.sector_label.grid(row=6, column=0)
 
 
 if __name__ == "__main__":

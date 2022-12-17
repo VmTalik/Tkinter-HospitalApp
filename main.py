@@ -1,5 +1,7 @@
 import tkinter as tk
 from PIL import ImageTk, Image
+from db import HospitalBase
+from sql_queries import insert_into_add_patient
 
 
 class MainWindow(tk.Tk):
@@ -96,6 +98,21 @@ class AddPatientWindow(tk.Toplevel):
         self.policy_label.grid(row=5, column=0)
         self.sector_label = tk.Label(self, text="Участок")
         self.sector_label.grid(row=6, column=0)
+
+        tk.Button(self, text="Добавить пациента", width=40, command=self.submit).grid(row=7, column=0)
+
+    def submit(self):
+        a = self.fio.get()
+        b = self.birth_date.get()
+        c = self.phone_number.get()
+        d = self.home_address.get()
+        e = self.policy.get()
+        f = self.sector.get()
+        conn = HospitalBase().connection
+        cursor = conn.cursor()
+
+        cursor.execute(insert_into_add_patient, (a, b, c, d, e, f))
+        conn.commit()
 
 
 if __name__ == "__main__":

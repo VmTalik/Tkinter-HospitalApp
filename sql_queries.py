@@ -1,40 +1,40 @@
-"""Скрипт с SQL запросами и данными"""
-"""
-========================
-Создание базы данных
-========================
-"""
-vessel_table = """CREATE TABLE IF NOT EXISTS vessel (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        vessel_name TEXT, 
-                        side_number TEXT UNIQUE
-                        );"""
+"SQL запросы"
 
-catch_table = """CREATE TABLE IF NOT EXISTS catch (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        fish_name TEXT,
-                        catch_date TEXT,
-                        weight REAL,
-                        vessel_id INTEGER,
-                        FOREIGN KEY (vessel_id) REFERENCES vessel (id)
-                        );"""
 """
-===============================
 Внесение данных в базу данных
-===============================
 """
+
 insert_into_add_patient = 'INSERT INTO patient (fio, birth_date, phone_number, home_address, policy, sector) ' \
                      'VALUES (%s,%s,%s,%s,%s,%s)'
 
 
 """
-===============================
 Запросы к базе данных
-===============================
 """
 
-select_view_patient = """SELECT fish_name, weight, catch_date, vessel_name, side_number 
-                FROM catch INNER JOIN vessel
-	              ON catch.vessel_id = vessel.id
-               WHERE catch.weight BETWEEN {} AND {};
-               """
+
+# выборка по заданному диапазону веса
+select_patient_data = """SELECT fio, birth_date, phone_number, home_address, sector
+                           FROM patient
+                          WHERE patient_id = {};
+                        """
+
+select_doctor_examination = """SELECT med_examination_id, med_examination_date, visit_purpose, complaint
+                                 FROM med_examination
+                                 WHERE patient = {};
+                            """
+
+
+select_disease = """SELECT disease_id, disease_type ,injury
+                      FROM disease;
+                  """
+
+
+select_sick_list = """SELECT * FROM sick_list
+                              WHERE patient = {};"""
+
+select_shift = """SELECT shift_date, shift_time, fio, speciality
+                    FROM shift
+                    JOIN doctor
+                      ON shift.shift_id = doctor.shift
+                      WHERE doctor_id = {}; """

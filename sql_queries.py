@@ -14,7 +14,7 @@ insert_into_add_patient = 'INSERT INTO patient (fio, birth_date, phone_number, h
 
 
 # выборка по заданному диапазону веса
-select_patient_data = """SELECT fio, birth_date, phone_number, home_address, sector
+select_patient_data = """SELECT fio, birth_date, phone_number, home_address,policy, sector
                            FROM patient
                           WHERE patient_id = {};
                         """
